@@ -1,0 +1,20 @@
+div.list-group {
+    margin-top: 10px;
+}
+
+.tag {
+    background-color: #eee;
+    padding: 10px;
+}
+
+.tag-div {
+    margin: 10px 0;
+}
+
+img {
+    max-width: 500px;
+}
+
+.title {
+    padding: 5px 10px;
+}

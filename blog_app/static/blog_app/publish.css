@@ -1,0 +1,47 @@
+
+
+#article-form {
+    width: 100%;
+    box-shadow: 0 0px 12px 13px #daeeff;
+    overflow: hidden;
+    padding: 0.5rem 2rem;
+    border-radius: 10px;
+}
+
+.form-field {
+    margin: 1rem 1rem;
+    width: 100%;
+
+}
+
+.form-field > label {
+    margin-right: 0.5rem;   
+    font-weight: bold;
+}
+
+
+.form-field > textarea, .form-field > input {
+
+}
+
+.error input, .error textarea {
+    background-color: #ffe6e7;
+}
+
+.errorlist {
+    list-style: none;
+    margin: 0.5rem 0;
+    padding: 0;
+    color: #d6000b;
+}
+
+
+ #article-preview { 
+    overflow-y: scroll;
+    height: 600px;
+
+} 
+
+[contentEditable=false]:empty:not(:focus):before {
+    content: attr(data-text)
+  }

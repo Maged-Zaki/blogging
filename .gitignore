@@ -1,0 +1,4 @@
+.DS_Store
+/.vscode
+/django-venv
+/py_client

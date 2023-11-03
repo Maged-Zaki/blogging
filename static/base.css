@@ -1,0 +1,27 @@
+
+body {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    font-family: Arial, Helvetica, sans-serif;
+    height: 100vh;
+
+}
+
+main {
+    flex-grow: 10;
+}
+
+#header-blog-logo {
+    width: 100px;
+}
+
+.logo {
+    margin-right: 110px;
+}
+
+
+#footer {
+    margin-top: 50px;
+}
+

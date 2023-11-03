@@ -1,0 +1,96 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'bootstrap-5.3.0-dist\css\bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'base.css' %}">
+    {% block css_files  %} {% endblock %}
+    <title> {% block title %}{% endblock %} </title>
+</head>
+
+<body>
+    <header class="p-3 mb-3 border-bottom">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+
+                <div class="logo">
+                    <a href="{% url 'index' %}">
+                      <img src="{% static 'blog_app\images\logo.png' %}" alt="" id="header-blog-logo">
+                    </a>
+                </div>
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0" id="ul-header">
+                    <li><a href="{% url 'all_articles' %}" class="btn btn-outline-primary me-2">Recent articles</a></li>
+                </ul>
+
+                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" method="get" action="{% url 'search' %}">
+                    <input type="search" class="form-control" placeholder="Search..." aria-label="Search" name="q">
+                </form>
+
+                {% if user.is_authenticated %}
+
+                  <a type="button" class="btn btn-outline-primary me-2" href="{% url 'publish' %}">Publish</a>
+
+                <div class="dropdown text-end">
+                    <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="{% if user.userprofile.profile_image %}  {{ user.userprofile.profile_image.url }} {% else  %} {% static 'blog_app/images/default_profile_image.jpg' %} {% endif %}" alt="mdo" width="32" height="32" class="rounded-circle">
+                    </a>
+                    <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" style="">
+                        <li><a class="dropdown-item" href="{% url 'my_articles' %}">My Articles</a></li>
+                        <li><a class="dropdown-item" href="{% url 'settings' %}">Settings</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="{% url 'logout' %}">Sign out</a></li>
+                    </ul>
+                </div>
+                {% else  %}
+                <div class="col-md-3 text-end">
+                    <a type="button" class="btn btn-outline-primary me-2" href="{% url 'login' %}">Login</a>
+                    <a type="button" class="btn btn-primary" href="{% url 'register' %}">Sign-up</a>
+                  </div>
+                {% endif %}
+            </div>
+        </div>
+    </header>
+
+
+
+    {% block body %}{% endblock %}
+    <div class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary" id="footer">
+      <!-- Copyright -->
+      <div class="text-white mb-3 mb-md-0">
+        Copyright © 2023. All rights reserved.
+      </div>
+      <!-- Copyright -->
+
+      <!-- Right -->
+      <div>
+        <a href="#!" class="text-white me-4">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="#!" class="text-white me-4">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="#!" class="text-white me-4">
+          <i class="fab fa-google"></i>
+        </a>
+        <a href="#!" class="text-white">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </div>
+      <!-- Right -->
+    </div>
+<!-- Load jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Load Popper.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
+<!-- Load Bootstrap JavaScript -->
+<script src="{% static 'bootstrap-5.3.0-dist/js/bootstrap.min.js' %}"></script>
+</body>
+
+</html>

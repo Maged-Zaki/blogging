@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block css_files %} <link rel="stylesheet" href="{% static 'blog_app/index.css' %}"> {% endblock %}
+
+{% block title %}Blogging {% endblock %}
+
+
+
+{% block body %}
+
+<main>
+
+    <div class="container">
+        {% for message in messages %}
+        <div class="alert alert-success" role="alert"> {{message}}</div>
+        {% endfor %}
+        
+        <div class=" d-flex f-div">
+            <div class="text">
+                <h2>Easy and Quick</h2>
+                <p>
+                    
+                    Welcome to our blogging platform, where sharing your thoughts with the world is now easier and quicker than ever
+                    before. We understand that your ideas are valuable and deserve to be heard without unnecessary complications.
+                    With our intuitive and user-friendly interface, you can effortlessly compose, format, and publish your posts
+                    within minutes. Whether you're a seasoned writer or just starting, our platform's streamlined design ensures
+                    that the focus remains on your content. Join us in shaping the digital discourse with convenience at your
+                    fingertips.
+                </p>
+            </div>
+
+            <div class="img-div">
+                <img src="{% static 'blog_app/images/index.gif'  %}" alt="">
+            </div>
+        </div>   
+
+        <div class="d-flex s-div">
+            <div class="text col-lg-6 ">
+                <h2>Anti Cancel Culture</h2>
+                <p>
+                    In a time when diverse opinions are crucial for societal growth, we stand firmly against the rising tide of
+                    cancel culture. Our platform is committed to fostering an environment where open dialogue and respectful
+                    disagreement thrive. We believe that true progress comes from engaging with differing perspectives, and we
+                    encourage our users to express their thoughts without the fear of being silenced. Here, you can explore ideas
+                    without the worry of being judged solely for your beliefs. Join us in promoting a culture of understanding,
+                    empathy, and intellectual exchange, where every voice is given the chance to contribute to meaningful
+                    conversations.
+                </p>
+            </div>
+            
+        </div>   
+
+            <div class="col">
+                <div class="img-div">
+                    <img src="{% static  'blog_app/images/cancel_culture.jpg' %}" alt="" id="cancel-culture-img">
+                </div>
+            </div>
+
+            <div id="try-blogging-btn-div">
+                <a type="button" class="btn btn-primary btn-lg" href="{% url 'register' %}" >Try Blogging now!</a>
+            </div>
+
+
+    
+
+    </div>
+</main>
+
+
+{% endblock %}

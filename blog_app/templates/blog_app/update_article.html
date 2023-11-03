@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% load widget_tweaks %}
+
+{% block css_files  %} <link rel="stylesheet" href="{% static 'blog_app\publish.css' %}"> {% endblock %}
+
+
+{% block title %}Update article {% endblock %}
+
+
+
+
+{% block body %} 
+
+<main>
+    <div class="container">
+        <form id="article-form" method="post">
+            <div class="alert alert-primary" role="alert">If you're not familiar with Markdown check it here <a href="https://www.markdownguide.org/basic-syntax/" target=”_blank”>Markdown syntax</a></div>
+
+            {% csrf_token %}
+            <div class="input-group form-field {% if field.errors %} error {% endif %}">
+                {{ form.title.label_tag }}
+                {{ form.title }}
+                {{ form.title.errors }}
+            </div>
+            
+            <div class="input-group form-field {% if field.errors %} error {% endif %}">
+                {{ form.content.label_tag }}
+                {{ form.content }}
+
+                <div class="form-control" id="article-preview" contentEditable=false data-text="Preview of the page will appear here as you write" ></div>
+
+                {{ form.content.errors }}
+            </div>
+
+            <div class="input-group form-field {% if field.errors %} error {% endif %}">
+                {{ form.tags.label_tag }}
+                {{ form.tags }}
+                {{ form.tags.errors }}
+            </div>
+
+            <div class="input-group form-field {% if field.errors %} error {% endif %}">
+                {{ form.slug.label_tag }}
+                {{ form.slug }}
+                {{ form.slug.errors }}
+            </div>
+
+            <div class="input-group form-field {% if field.errors %} error {% endif %}">
+                {{ form.image_link.label_tag }}
+                {{ form.image_link }}
+                {{ form.image_link.errors }}
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg"
+            style="padding-left: 2.5rem; padding-right: 2.5rem;">Update</button>
+        </form>
+    </div>
+
+</main>
+<script src="{% static 'blog_app/js/publish.js' %}"></script>t
+{% endblock %}

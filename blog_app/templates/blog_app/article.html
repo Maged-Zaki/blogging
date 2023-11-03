@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load custom_filters %}
+{% block title %} {{article.title}} {% endblock %}
+
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'blog_app/article.css' %}"> {% endblock %}
+
+
+{% block body %}
+
+<main>
+  <div class="container">
+    <div class="article-header">
+      <h1>{{article.title}}</h1>
+      
+      <div id="article-publisher">By: <span id="publisher-name">{{article.user.username| title}}</span></div>
+      <div id="article-date">Date: <span id="published-date">{{article.date |format_article_date  }}</span> </div>
+      <div class="tag-div">
+        Tags: {% for tag in article.tags.all %} <span class="tag">{{tag}}</span> {% endfor %}
+      </div>
+    </div>
+
+    <div class="img-div">
+      <img src="{{article.image_link}}" alt="">
+    </div>
+
+    <article>
+      {{article.content | safe}}
+    </article>
+
+
+    <section style="background-color: #ad655f;">
+      <div class="container my-5 py-5">
+        <div class="row d-flex justify-content-center">
+          <div class="col-md-12 col-lg-10">
+            <div class="card text-dark">
+
+              {% if comments %}
+              {% for comment in comments %}
+              <div class="card-body p-4">
+                <div class="d-flex flex-start">
+                  <img class="rounded-circle shadow-1-strong me-3"
+                    src="{% if comment.user.userprofile.profile_image %}  {{ comment.user.userprofile.profile_image.url }} {% else  %} {% static 'blog_app/images/default_profile_image.jpg' %} {% endif %}"
+                    alt="avatar" width="60" height="60" />
+                  <div>
+
+                    <h6 class="fw-bold mb-1">{{comment.user.username|title}}</h6>
+                    <div class="d-flex align-items-center mb-3">
+                      <p class="mb-0">
+                        {{comment.date |format_article_date }}
+                      </p>
+                      <a href="#!" class="link-muted"><i class="fas fa-pencil-alt ms-2"></i></a>
+                      <a href="#!" class="link-muted"><i class="fas fa-redo-alt ms-2"></i></a>
+                      <a href="#!" class="link-muted"><i class="fas fa-heart ms-2"></i></a>
+                    </div>
+                    <p class="mb-0">
+                      {{comment.comment}}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <hr class="my-0" />
+              {% endfor %}
+
+              {% else %}
+              <h1>No comments! be the first to comment</p>
+                {% endif %}
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    {% if user.is_authenticated %}
+    <form action="{% url 'article' article.slug %}" method="post">
+      {% csrf_token %}
+
+
+      <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;">
+        <div class="d-flex flex-start w-100">
+          <img class="rounded-circle shadow-1-strong me-3"
+            src="{% if user.userprofile.profile_image %}  {{ user.userprofile.profile_image.url }} {% else  %} {% static 'blog_app/images/default_profile_image.jpg' %} {% endif %}"
+            alt="avatar" width="40" height="40">
+          <div class="form-outline w-100">
+            <textarea class="form-control" id="comment" name="comment" rows="4" style="background: #fff;"
+              spellcheck="false"></textarea>
+            <label class="form-label" for="comment">Comment</label>
+          </div>
+        </div>
+        <div class="float-end mt-2 pt-1">
+          <button type="submit" class="btn btn-primary btn-sm">Post comment</button>
+        </div>
+      </div>
+    </form>
+    {% else %}
+    <a href="{% url 'login' %}">Login to comment</a>
+    {% endif %}
+
+
+  </div>
+</main>
+
+{% endblock %}

@@ -1,0 +1,52 @@
+
+.article-header {
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+}
+
+.article-header h1 {
+    text-align: center;
+    padding: 10px;
+}
+
+#article-publisher {
+    padding-left: 10px;
+}
+
+#publisher-name {
+    font-weight: bold;
+}
+
+#article-date {
+    padding-left: 10px;
+}
+
+#published-date {
+    font-weight: bold;
+}
+
+
+.img-div {
+    margin: 20px 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.img-div img {
+    width: 80%;
+}
+
+.tag {
+    background-color: #eee;
+    padding: 10px;
+}
+
+.tag-div {
+    margin: 10px 0;
+}
+
+article {
+    border: 1px solid black;
+    padding: 1rem;
+}

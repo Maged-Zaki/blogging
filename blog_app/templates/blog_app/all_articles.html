@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% load custom_filters %}
+
+
+{% block title %} Recent Articles {% endblock %}
+
+{% block css_files  %} <link rel="stylesheet" href="{% static 'blog_app/all_articles.css' %}"> {% endblock %}
+
+
+{% block body %} 
+
+<main >
+    <div class="container">
+      <div class="filter-search">
+        <form action="filter_all_articles">
+
+          <label for="tags">Filter by tags:</label>
+          <select name="tag" id="tags">
+            <option value="" disabled selected>Choose a tag</option>
+
+            {% for tag in tags %}
+
+            <option value="{{ tag }}" >{{ tag }}</option>
+
+            {% endfor %}
+          </select>
+          <button class="btn btn-primary"  type="submit">Filter</button>
+        </form>
+      </div>
+        {% for article in articles %}
+        <div class="list-group">
+            <a href="{% url 'article' article.slug %}" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1 title">{{article.title}}</h5>
+                  <small class="text-muted" id="time">{{ article.date|format_article_date }}</small>
+                </div>  
+                <img src="{% if article.image_link %} {{article.image_link}} {% else %} {% static 'blog_app/images/no_image.jpg' %} {% endif %}" alt="">
+                <div class="tag-div">{% for tag in article.tags.all %} <span class="tag">{{tag}}</span> {% endfor %} 
+                </div>
+              </a>
+          </div>
+        {% endfor %}
+    </div>
+</main>
+
+
+{% endblock %}
