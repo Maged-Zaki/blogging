@@ -6,6 +6,7 @@ This is a Django-based blogging application that allows users to write and publi
 
 ## Technologies and Libraries used
 - **Django** and that includes the built-in libraries.
+- - **Sqlite3** Used as a database engine.
 - **markdown2.MarkDown:** Used for markdown syntax and parsing.
 - **Bootstrap** Used V5 for frontend stuff such as buttons.
 
